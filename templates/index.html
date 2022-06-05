@@ -1,0 +1,343 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Page Title -->
+    <title>Medino</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/logo/favicon.png'%}" type="image/x-icon">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate-3.7.0.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-4.7.0.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-4.1.3.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.datetimepicker.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/linearicons.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/back.css'%}">
+
+</head>
+<body>
+    
+    <!-- Preloader Starts -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Header Area Starts -->
+    <header class="header-area">
+        <div id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="{% url 'home:home' %}"><img src="{% static 'assets/images/logo/logo.png'%}"  alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="{% url 'home:home' %} ">Home</a></li>
+                        <li><a href="{% url 'departments:departments' %} ">First Aid</a></li>
+                        <li><a href="{% url 'doctors:doctors' %} ">doctors</a></li>
+                        <li ><a href="{% url 'blog:blog_home' %} ">blog</a>
+                        <li ><a href="{% url 'illnesses:illnesses_home' %} ">illnesses</a>
+
+                        <li ><a href="{% url 'book:book' %} ">books</a>
+                        </li>
+                        <li><a href="{% url 'contact:contact' %} ">Contact</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'account:logout' %}">log out</a></li>
+                        <li><a href="{% url 'account:profile' %} " class="fa fa-user">profile</a></li>
+                        {% else %}
+                        <li class="menu-has-children"><a href="">sign</a>
+                            <ul>
+                                <li><a href="{% url 'account:login' %} ">log in</a></li>
+                                <li><a href="{% url 'account:signin' %} ">sign up</a></li>
+                            </ul>
+                        </li>
+                        
+                        {% endif %}
+                        
+                        <li class="menu-has-children" ><a href="" ><i class="fa fa-language"></i>language</a>
+                            <ul>
+                                <li><a href="{% url 'home:home_ar' %} " >ar</a></li>
+                                <li><a href="{% url 'home:home' %} " class="fa fa-us">en</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Banner Area Starts -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                  <h2>We are here for your care</h2>
+                  <h3>Leading the way in medical excellenc</h3>
+                    <h4>Caring for better life</h4>
+                    <a href="{% url 'contact:contact' %} " class="template-btn mt-3">contact us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Area End -->
+    <!-- Department Area Starts -->
+    <section class="department-area section-padding4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-top text-center">
+                        <h2>First Aid Procedures</h2>
+                        <p>First aid is the emergency care a sick or injured person gets. In some cases, it may be the only care someone needs, while in others, it may help them until paramedics arrive or they are taken to the hospital. The best way to prepare for these events is to get official first aid training, but until you are able to do so, you can learn some basic life-saving steps.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="department-slider owl-carousel">
+                        {% for advice in advices %}
+                        <div class="single-slide">
+                            <div class="slide-img">
+                                <img src="{{advice.image.url}}" alt="" width="200" height="300" >
+                                <div class="hover-state">
+                                    <a href="{% url 'departments:departments' %} "><i class="fa fa-stethoscope"></i></a>
+                                </div>
+                            
+                            <div class="single-department item-padding text-center">
+                                <h3>{{advice.title}}</h3>
+                                <p>{{advice.description}}</p>
+                            </div>
+                        </div>
+                        </div>
+                        {% endfor %}
+
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Department Area Starts -->
+
+
+    
+
+
+    <!-- Welcome Area Starts -->
+    <section class="welcome-area section-padding3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 align-self-center">
+                    <div class="welcome-img">
+                        <img src="{% static 'assets/images/wel.jpg'%}" alt=""height="400px">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="welcome-text mt-5 mt-lg-0">
+                        <h2>Welcome to our WebSite</h2>
+                        <p class="pt-3">Welcome to our website. we designed this site to help you and choose the best doctor in all disciplines and to increase your culture and see the books and the best tips and to teach you first aid and to help you apply it in your public life</p>
+                        <p>we are here for your care.</p>
+                        <a href="{% url 'home:about' %} " class="template-btn mt-3">read about us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Welcome Area End -->
+
+    <!-- Specialist Area Starts -->
+    <section class="specialist-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-top text-center">
+                        <h2>Our specialish</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                {% for doctor in doctors %}
+                <div class="col-lg-3 col-sm-6 "   >
+                    <div class="single-doctor mb-4 mb-lg-0 ">
+                        <div class="doctor-img">
+                            <img src="{{doctor.image.url}}" width="200"  >
+                        </div>
+                        <div class="content-area">
+                            <div class="doctor-name text-center">
+                                <h3>{{doctor.name}}</h3>
+                                <h6>{{doctor.Specialization}}</h6>
+                            </div>
+                            <div class="doctor-text text-center">
+                                <p>{{doctor.address}}</p>
+                                <ul class="doctor-icon">
+                                  <i class="fa-solid fa-phone">{{doctor.phone}}</i>
+                                    <li><a href="#"><i class="fa fa-facebook"></i><a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i><a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i><a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 {% endfor %}
+               
+                
+            </div>
+        </div>
+    </section>
+    <!-- Specialist Area Starts -->
+
+    <!-- Hotline Area Starts -->
+    <section class="hotline-area text-center section-padding">
+        <div class="container">
+            <h2>Emergency hotline</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    
+                    <h2>Ambulance</h2>
+                    <span>123</span>
+                    <p class="pt-3">We provide support to customers. Feel free to contact us For emergencies. <br>for emergency case.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h2>Police number</h2>
+                    
+                    <span>122</span>
+                    <p class="pt-3">We provide support to customers. Feel free to contact us For emergencies. <br>for emergency case.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hotline Area End -->
+
+
+    <!-- News Area Starts -->
+    <section class="news-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-top text-center">
+                        <h2>Recent medical news</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for blog in blogs %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-news">
+                        <div class="news-img">
+                            <img src="{{blog.image.url}}" alt="" width="350" height="300">
+                        </div>
+                        <div class="news-text">
+                            <div class="news-date">
+                                {{blog.create_at|date:'d M o'}}
+                            </div>
+                            <h3><a href="{% url 'blog:blog_details' blog.slug %}">{{blog.title}}</a></h3>
+                            <p>{{blog.description}}</p>    
+                            <a href="{% url 'blog:blog_details' blog.slug %}" class="news-btn">read more <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+    </section>
+    <!-- News Area Starts -->
+
+    <!-- Footer Area Starts -->
+    <footer class="footer-area section-padding">
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4"><u>Medino </u></h3>
+                            <ul>
+                                <li class="mb-2"><a href="{% url 'home:about' %} ">About Us</a></li>
+                                <li class="mb-2"><a href="{% url 'contact:contact' %} ">Contact US</a></li>
+                                <li class="mb-2"><a href="{% url 'home:home' %} ">home</a></li>
+                                <li class="mb-2"><a href="{% url 'book:book' %} ">books</a></li>
+                                <li class="mb-2"><a href="{% url 'departments:departments' %} ">First-Aid</a></li>
+                                <li><a href="{% url 'doctors:doctors' %} ">Doctors</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 offset-xl-1 col-lg-6">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">Are You A Doctor ?</h3>
+                            <p class="mb-4">  <li class="mb-2"><a href="{% url 'doctors:doctors' %} ">see medino doctors</a></li></p>
+                            <form action="#">
+                                <input type="email" placeholder="Your email here" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Enter Your email here'" required>
+                                <button type="submit" class="template-btn">save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 offset-xl-1 col-lg-3">
+                        <div class="single-widge-home">
+                            <h3 class="mb-4">instagram feed</h3>
+                            <div class="feed">
+                                <img src="{% static 'assets/images/doctor5.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/doctor3.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/doctor4.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/doctor1.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/doctor2.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/doctor6.jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/OIP (2).jpg'%}" alt="feed">
+                                <img src="{% static 'assets/images/OIP (3).jpg'%}" alt="feed">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="social-icons">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+    <button  class="btn btn-primary btn-floating btn-lg" onclick="topFunction()" id="myBtntop" title="Go to top" >
+        <i class="fa fa-arrow-up"></i>
+      </button>
+
+    <!-- Javascript -->
+    <script src="{% static 'assets/js/vendor/jquery-2.2.4.min.js'%}"></script>
+	<script src="{% static 'assets/js/vendor/bootstrap-4.1.3.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/wow.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/owl-carousel.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/jquery.datetimepicker.full.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/superfish.min.js'%}"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
+    <script src="{% static 'assets/js/maintop.js'%}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+#myBtntop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    }
+
+.pre {
+        color:red;
+        font-family:"Ubuntu",sans-serif;font-size:18px
+        
+    }
